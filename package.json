@@ -1,6 +1,6 @@
 {
-  "name": "js-dbmanager",
-  "version": "0.1.0",
+  "name": "@ralvarezdev/js-dbmanager",
+  "version": "0.1.1",
   "description": "Database component for JavaScript projects",
   "main": "index.js",
   "files": [
