@@ -50,15 +50,15 @@ export default class DatabaseManager {
 
         // Set the client event listeners
         if (onConnect)
-        this.#pool.on("connect", onConnect);
+            this.#pool.on("connect", onConnect);
         if (onAcquire)
-        this.#pool.on("acquire", onAcquire);
+            this.#pool.on("acquire", onAcquire);
         if (onError)
-        this.#pool.on("error", onError);
+            this.#pool.on("error", onError);
         if (onRelease)
-        this.#pool.on("release", onRelease);
+            this.#pool.on("release", onRelease);
         if (onRemove)
-        this.#pool.on("remove", onRemove);
+            this.#pool.on("remove", onRemove);
     }
 
     // Get a connection from the pool
@@ -69,7 +69,7 @@ export default class DatabaseManager {
     // Handle the query to the database
     async #handleQuery(query) {
         // Create a database manager client
-        const client= await this.#connect();
+        const client = await this.#connect();
 
         // Execute the query
         try {
@@ -84,7 +84,7 @@ export default class DatabaseManager {
 
     // Raw query to the database
     async rawQuery(text, ...values) {
-       return await this.#handleQuery({text, values});
+        return await this.#handleQuery({text, values});
     }
 
     // Query the database
@@ -102,7 +102,8 @@ export default class DatabaseManager {
     }
 
     // Run a transaction with multiple queries
-    async runTransaction(txFn= async (client) => {}) {
+    async runTransaction(txFn = async (client) => {
+    }) {
         // Get a connection from the pool
         const client = await this.#connect();
 
@@ -118,7 +119,7 @@ export default class DatabaseManager {
     }
 
     // Run a transaction with multiple queries short version
-    async runTx(txFn){
+    async runTx(txFn) {
         return await this.runTransaction(txFn)
     }
 

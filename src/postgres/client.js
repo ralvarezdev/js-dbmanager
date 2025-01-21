@@ -1,4 +1,3 @@
-import {Pool} from 'pg';
 import {RemoveNullsFromObject} from "../../lib/helpers";
 
 // Errors that can be thrown by the DatabaseManagerClient
@@ -51,7 +50,8 @@ export default class DatabaseManagerClient {
     }
 
     // Run a transaction with multiple queries
-    async runTransaction(txFn= async (client) => {}) {
+    async runTransaction(txFn = async (client) => {
+    }) {
         try {
             // Begin the transaction
             await this.#client.query('BEGIN');
@@ -69,7 +69,7 @@ export default class DatabaseManagerClient {
     }
 
     // Run a transaction with multiple queries short version
-    async runTx(txFn){
+    async runTx(txFn) {
         return await this.runTransaction(txFn)
     }
 
