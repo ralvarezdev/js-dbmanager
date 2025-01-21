@@ -5,10 +5,12 @@ import DatabaseManagerClient from "./client";
 // DatabaseManager for Postgres databases
 export default class DatabaseManager {
     #pool
+    #logger
 
     // Constructor for DatabaseManager class
     constructor(
         {
+            logger = null,
             user = null,
             password = null,
             host = null,
@@ -31,7 +33,7 @@ export default class DatabaseManager {
             },
         }
     ) {
-        //
+        // Build the configuration object
         let config = {
             user,
             password,
@@ -45,8 +47,15 @@ export default class DatabaseManager {
             allowExitOnIdle
         }
 
+        // Set the logger
+        this.#logger = logger;
+
         // Create a new pool with the configuration
         this.#pool = new Pool(RemoveNullsFromObject(config));
+
+        // Log the creation of the pool
+        if (this.#logger)
+            this.#logger.info("Database pool created")
 
         // Set the client event listeners
         if (onConnect)
@@ -125,6 +134,10 @@ export default class DatabaseManager {
 
     // Close the pool
     async close() {
+        // Log the closing of the pool
+        if (this.#logger)
+            this.#logger.info("Closing the database pool");
+
         await this.#pool.end();
     }
 }
