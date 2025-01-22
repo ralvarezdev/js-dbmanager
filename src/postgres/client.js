@@ -1,7 +1,7 @@
 import {RemoveNullsFromObject} from "../../lib/helpers";
 
 // Errors that can be thrown by the DatabaseManagerClient
-const ErrNullPool = new Error("Pool is null");
+const UNINITIALIZED_POOL_ERROR = new Error("Pool is not initialized");
 
 // DatabaseManagerClient for Postgres databases
 export default class DatabaseManagerClient {
@@ -13,7 +13,7 @@ export default class DatabaseManagerClient {
     ) {
         // Check if the pool is null
         if (!pool) {
-            throw ErrNullPool;
+            throw UNINITIALIZED_POOL_ERROR;
         }
 
         // Connect to the pool
