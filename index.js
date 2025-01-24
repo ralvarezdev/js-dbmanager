@@ -1,3 +1,3 @@
-import DatabaseManager from "./src/postgres/manager";
+import DatabaseManager from "./postgres/manager";
 
 export default DatabaseManager

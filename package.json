@@ -1,14 +1,8 @@
 {
   "name": "@ralvarezdev/js-dbmanager",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Database component for JavaScript projects",
   "main": "index.js",
-  "files": [
-    "src/"
-  ],
-  "directories": {
-    "lib": "lib"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -36,5 +30,6 @@
   "homepage": "https://github.com/ralvarezdev/js-dbmanager#readme",
   "dependencies": {
     "pg": "^8.13.1"
-  }
+  },
+  "type": "module"
 }

@@ -1,5 +1,5 @@
 import {Pool} from 'pg';
-import {RemoveNullsFromObject} from "../../lib/helpers";
+import {RemoveNullsFromObject} from "../lib/helpers";
 import DatabaseManagerClient from "./client";
 
 // DatabaseManager for Postgres databases
@@ -72,7 +72,13 @@ export default class DatabaseManager {
 
     // Get a connection from the pool
     async #connect() {
-        return new DatabaseManagerClient(this.#pool);
+        // Create the database manager client
+        const client= new DatabaseManagerClient(this.#pool);
+
+        // Connect to the database
+        await client.connect()
+
+        return client
     }
 
     // Handle the query to the database

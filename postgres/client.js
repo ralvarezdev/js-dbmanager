@@ -1,23 +1,55 @@
-import {RemoveNullsFromObject} from "../../lib/helpers";
+import EventEmitter from 'events'
+import {RemoveNullsFromObject} from "../lib/helpers";
 
 // Errors that can be thrown by the DatabaseManagerClient
 const UNINITIALIZED_POOL_ERROR = new Error("Pool is not initialized");
 
 // DatabaseManagerClient for Postgres databases
 export default class DatabaseManagerClient {
+    #pool
     #client
+    #connecting
+    #eventEmitter
 
     // Constructor for DatabaseManager class
-    async constructor(
+    constructor(
         pool
     ) {
         // Check if the pool is null
-        if (!pool) {
+        if (!pool)
             throw UNINITIALIZED_POOL_ERROR;
+
+        // Set the database pool
+        this.#pool = pool
+
+        // Create the event emitter
+        this.#eventEmitter=new EventEmitter()
+    }
+
+    // Connect to the database
+    async connect() {
+        // Check if the client has already been connected
+        if (this.#client)
+            return
+
+        // Check if the client is connecting
+        if (this.#connecting){
+            await new Promise((resolve) => {
+                    this.#eventEmitter.on('connected', () => {
+                        resolve();
+                    });
+                });
+            return
         }
 
-        // Connect to the pool
-        this.#client = await pool.connect();
+        // Set as connecting
+        this.#connecting = true
+
+        // Get a client from the pool
+        this.#client = await this.#pool.connect();
+
+        // Emit the connected event
+        this.#eventEmitter.emit('connected');
     }
 
     // Handle the query to the database
