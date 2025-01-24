@@ -124,7 +124,7 @@ export default class DatabaseManager {
 
         try {
             // Run the transaction function
-            await txFn(client);
+            await client.runTransaction(txFn)
         } catch (err) {
             throw err;
         } finally {
