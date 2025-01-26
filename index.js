@@ -1,3 +1,2 @@
-import DatabaseManager from "./postgres/manager";
-
-export default DatabaseManager
+export {default as PostgresDatabaseManager} from "./postgres/manager.js"
+export {default as PostgresDatabaseManagerClient} from "./postgres/client.js"
