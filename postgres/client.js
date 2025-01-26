@@ -1,5 +1,5 @@
 import EventEmitter from 'events'
-import {RemoveNullsFromObject} from "../lib/helpers";
+import {RemoveNullsFromObject} from "../lib/helpers.js";
 
 // Errors that can be thrown by the DatabaseManagerClient
 const UNINITIALIZED_POOL_ERROR = new Error("Pool is not initialized");

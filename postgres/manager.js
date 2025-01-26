@@ -1,6 +1,6 @@
 import {Pool} from 'pg';
-import {RemoveNullsFromObject} from "../lib/helpers";
-import DatabaseManagerClient from "./client";
+import {RemoveNullsFromObject} from "../lib/helpers.js";
+import DatabaseManagerClient from "./client.js";
 
 // DatabaseManager for Postgres databases
 export default class DatabaseManager {
