@@ -1,1 +1,1 @@
-export {DatabaseManager as PostgresDatabaseManager, DatabaseManagerClient as PostgresDatabaseManagerClient} from "./postgres/index.js"
+export {DatabaseManager as PostgresDatabaseManager, DatabaseManagerClient as PostgresDatabaseManagerClient, IsUniqueConstraintError as PostgresIsUniqueConstraintError} from "./postgres/index.js"
