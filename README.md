@@ -67,4 +67,4 @@ There are no tests.
 
 ## License
 
-The repository has a GNU General Public License v3.0 `LICENSE` file, but `package.json` declares `ISC`; the two disagree.
+GNU General Public License v3.0. `package.json` declares `GPL-3.0-only`, matching the `LICENSE` file.
